@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+    <string name="title_activity_movie_grid">Popular Movies</string>
+</resources>
