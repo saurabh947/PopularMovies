@@ -1,9 +1,14 @@
+/**
+ * Copyright (C) 2015 Saurabh Agrawal
+ */
+
 package com.saurabh.popularmovies.constants;
 
-public class Constants {
+/**
+ * App wide constants are declared here.
+ */
 
-    // API KEY -- MUST CHANGE / REMOVE !!
-    public static final String API_KEY = "32b9737e7c098f23e9c9996cea937869";
+public class Constants {
 
     public static final String SORT_POPULARITY = "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=";
     public static final String SORT_RATING = "http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=";

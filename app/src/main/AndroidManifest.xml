@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MovieGridActivity"
+            android:name=".ui.activities.MovieGridActivity"
             android:label="@string/title_activity_movie_grid"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".MovieDetailsActivity"
+            android:name=".ui.activities.MovieDetailsActivity"
             android:label="@string/title_activity_movie_grid"/>
 
     </application>
