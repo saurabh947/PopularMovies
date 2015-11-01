@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class DataFetcher extends AsyncTask<String, Void, String> {
-    private static final String TAG = DataFetcher.class.getCanonicalName();
+    private static final String TAG = DataFetcher.class.getSimpleName();
     private OnTaskCompleted taskCompleted;
 
     public DataFetcher(OnTaskCompleted activityContext) {
@@ -44,6 +44,7 @@ public class DataFetcher extends AsyncTask<String, Void, String> {
             return readInputStream(inputStream);
 
         } catch (Exception e) {
+            Log.e(TAG, "Error: Could not connect to remote server.");
             e.printStackTrace();
         } finally {
             if (inputStream != null) {
@@ -61,7 +62,6 @@ public class DataFetcher extends AsyncTask<String, Void, String> {
         while ((line = rd.readLine()) != null) {
             sb.append(line);
         }
-        Log.i(TAG, "" + sb.toString());
         return sb.toString();
     }
 }

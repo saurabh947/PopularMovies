@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.saurabh.popularmovies.constants.Constants;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<Movie> {
     private static final String TAG = GridAdapter.class.getCanonicalName();
-    private static final String POSTER_PATH = "http://image.tmdb.org/t/p/w500";
 
     private Context mContext;
 
@@ -31,10 +30,9 @@ public class GridAdapter extends ArrayAdapter<Movie> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.movie_grid_item, parent, false);
-            viewHolder.movie_poster = (ImageView) convertView.findViewById(R.id.grid_movie_poster);
-            viewHolder.movie_name = (TextView) convertView.findViewById(R.id.grid_movie_name);
+            viewHolder.movie_thumbnail = (ImageView) convertView.findViewById(R.id.grid_movie_poster);
 
-            viewHolder.movie_poster.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            viewHolder.movie_thumbnail.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             convertView.setTag(viewHolder);
         } else {
@@ -42,19 +40,15 @@ public class GridAdapter extends ArrayAdapter<Movie> {
         }
 
         Picasso.with(mContext)
-                .load(POSTER_PATH + movie.getPosterPath())
+                .load(Constants.THUMBNAIL_URL + movie.getThumbnailPath())
                 .placeholder(R.drawable.ic_placeholder)
                 .error(R.drawable.ic_error)
-                .into(viewHolder.movie_poster);
-
-        //viewHolder.movie_poster.setImageResource();
-        viewHolder.movie_name.setText(movie.getOriginalTitle());
+                .into(viewHolder.movie_thumbnail);
 
         return convertView;
     }
 
     private static class ViewHolder {
-        TextView movie_name;
-        ImageView movie_poster;
+        ImageView movie_thumbnail;
     }
 }

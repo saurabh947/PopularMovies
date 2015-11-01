@@ -1,15 +1,18 @@
 package com.saurabh.popularmovies;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
     private static final String TAG = Movie.class.getSimpleName();
 
     private int id;
-    private String posterPath;
+    private String thumbnailPath;
     private String originalTitle;
     private String overview;
-    private long popularity;
-    private float rating;
+    private double popularity;
+    private double rating;
     private String releaseDate;
+    private String posterPath;
 
     public int getId() {
         return id;
@@ -19,12 +22,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getThumbnailPath() {
+        return thumbnailPath;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
     }
 
     public String getOriginalTitle() {
@@ -43,19 +46,19 @@ public class Movie {
         this.overview = overview;
     }
 
-    public long getPopularity() {
+    public double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(long popularity) {
+    public void setPopularity(double popularity) {
         this.popularity = popularity;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -65,5 +68,13 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 }

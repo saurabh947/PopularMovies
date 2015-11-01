@@ -10,17 +10,8 @@
     <ImageView
         android:id="@+id/grid_movie_poster"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
-        android:contentDescription="@string/movie_poster"/>
-
-    <TextView
-        android:id="@+id/grid_movie_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"/>
+        android:contentDescription="@string/movie_thumbnail"/>
 
 </LinearLayout>

@@ -1,22 +1,24 @@
 package com.saurabh.popularmovies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.saurabh.popularmovies.constants.Constants;
 
 import java.util.ArrayList;
 
 public class MovieGridActivity extends AppCompatActivity implements OnTaskCompleted {
     private static final String TAG = MovieGridActivity.class.getCanonicalName();
 
-    private static final String SORT_POPULARITY = "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=";
-    private static final String SORT_RATING = "http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=";
-    private static final String API_KEY = "32b9737e7c098f23e9c9996cea937869";
-
     ProgressBar mProgressBar;
+    GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +35,31 @@ public class MovieGridActivity extends AppCompatActivity implements OnTaskComple
 
     public void populateGrid() {
         DataFetcher dataFetcher = new DataFetcher(this);
-        String param = SORT_POPULARITY + API_KEY;
+        String param = Constants.SORT_POPULARITY + Constants.API_KEY;
         dataFetcher.execute(param);
     }
 
     @Override
-    public void onTaskCompleted(ArrayList<Movie> movies) {
+    public void onTaskCompleted(final ArrayList<Movie> movies) {
+        if (movies == null) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, "Error -> Could not retrieve the movies.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         mProgressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(this, "Success!", Toast.LENGTH_LONG).show();
         GridAdapter adapter = new GridAdapter(this, movies);
-        GridView gridview = (GridView) findViewById(R.id.movie_grid);
+        gridview = (GridView) findViewById(R.id.movie_grid);
         gridview.setAdapter(adapter);
 
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MovieGridActivity.this, MovieDetailsActivity.class);
+                intent.putExtra("selectedMovie", movies.get(position));
+                startActivity(intent);
+            }
+        });
     }
 }
